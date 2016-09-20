@@ -57,9 +57,17 @@
 		071994CE1D91B1070030F03A /* mc504 */ = {
 			isa = PBXGroup;
 			children = (
+				076297421D91B61800ADB8C3 /* projeto_multihread */,
 				071994CF1D91B1070030F03A /* main.c */,
 			);
 			path = mc504;
+			sourceTree = "<group>";
+		};
+		076297421D91B61800ADB8C3 /* projeto_multihread */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = projeto_multihread;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +254,7 @@
 				071994D51D91B1070030F03A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
