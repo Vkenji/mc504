@@ -6,10 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		071994D01D91B1070030F03A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 071994CF1D91B1070030F03A /* main.c */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		071994CA1D91B1070030F03A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -24,7 +20,7 @@
 
 /* Begin PBXFileReference section */
 		071994CC1D91B1070030F03A /* mc504 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mc504; sourceTree = BUILT_PRODUCTS_DIR; };
-		071994CF1D91B1070030F03A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		076297431D91B7BE00ADB8C3 /* projeto_multithread */ = {isa = PBXFileReference; lastKnownFileType = folder; path = projeto_multithread; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,17 +53,9 @@
 		071994CE1D91B1070030F03A /* mc504 */ = {
 			isa = PBXGroup;
 			children = (
-				076297421D91B61800ADB8C3 /* projeto_multihread */,
-				071994CF1D91B1070030F03A /* main.c */,
+				076297431D91B7BE00ADB8C3 /* projeto_multithread */,
 			);
 			path = mc504;
-			sourceTree = "<group>";
-		};
-		076297421D91B61800ADB8C3 /* projeto_multihread */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = projeto_multihread;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +115,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				071994D01D91B1070030F03A /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
