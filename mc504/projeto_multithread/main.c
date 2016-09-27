@@ -32,6 +32,8 @@ int main() {
     pthread_t thr_img[N_IMG], thr_spec[N_SPEC], thr_jdg[N_JDG];
     int i, hall_full, n_atnd;
     
+    int imgID[N_IMG], specID[N_SPEC];
+    
     hall_full = HALL_FULL;
     n_atnd = N_ATND;
     
@@ -39,10 +41,10 @@ int main() {
     sem_init (&attendant, 0, n_atnd);
     
     for (i = 0; i < N_IMG; i++)
-        pthread_create(&thr_img[i], NULL, f_img, NULL);
+        pthread_create(&thr_img[i], NULL, f_img, &imgID);
     
     for (i = 0; i < N_SPEC; i++)
-        pthread_create(&thr_spec[i], NULL, f_spec, NULL);
+        pthread_create(&thr_spec[i], NULL, f_spec, &specID);
     
     for (i = 0; i < N_JDG; i++)
         pthread_create(&thr_jdg[i], NULL, f_jdg, NULL);
