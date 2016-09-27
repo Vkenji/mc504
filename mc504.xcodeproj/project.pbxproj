@@ -6,6 +6,13 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		070674DB1D9AE97000B8CC25 /* immigrants.c in Sources */ = {isa = PBXBuildFile; fileRef = 070674DA1D9AE97000B8CC25 /* immigrants.c */; };
+		070674E31D9AE9A600B8CC25 /* jugde.c in Sources */ = {isa = PBXBuildFile; fileRef = 070674E21D9AE9A600B8CC25 /* jugde.c */; };
+		070674E51D9AE9B000B8CC25 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 070674E41D9AE9B000B8CC25 /* main.c */; };
+		070674E71D9AE9B600B8CC25 /* spectators.c in Sources */ = {isa = PBXBuildFile; fileRef = 070674E61D9AE9B600B8CC25 /* spectators.c */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		071994CA1D91B1070030F03A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -19,8 +26,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		070674D91D9AE96C00B8CC25 /* spectators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = spectators.h; path = projeto_multithread/spectators.h; sourceTree = "<group>"; };
+		070674DA1D9AE97000B8CC25 /* immigrants.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = immigrants.c; path = projeto_multithread/immigrants.c; sourceTree = "<group>"; };
+		070674E01D9AE98D00B8CC25 /* immigrants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = immigrants.h; path = projeto_multithread/immigrants.h; sourceTree = "<group>"; };
+		070674E11D9AE99B00B8CC25 /* judge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = judge.h; path = projeto_multithread/judge.h; sourceTree = "<group>"; };
+		070674E21D9AE9A600B8CC25 /* jugde.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jugde.c; path = projeto_multithread/jugde.c; sourceTree = "<group>"; };
+		070674E41D9AE9B000B8CC25 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = projeto_multithread/main.c; sourceTree = "<group>"; };
+		070674E61D9AE9B600B8CC25 /* spectators.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = spectators.c; path = projeto_multithread/spectators.c; sourceTree = "<group>"; };
 		071994CC1D91B1070030F03A /* mc504 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mc504; sourceTree = BUILT_PRODUCTS_DIR; };
-		076297431D91B7BE00ADB8C3 /* projeto_multithread */ = {isa = PBXFileReference; lastKnownFileType = folder; path = projeto_multithread; sourceTree = "<group>"; };
+		076297431D91B7BE00ADB8C3 /* projeto_multithread */ = {isa = PBXFileReference; lastKnownFileType = folder; name = projeto_multithread; path = mc504/projeto_multithread; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,9 +48,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		070674D81D9AE95000B8CC25 /* projeto_multithread */ = {
+			isa = PBXGroup;
+			children = (
+				070674E41D9AE9B000B8CC25 /* main.c */,
+				070674E01D9AE98D00B8CC25 /* immigrants.h */,
+				070674DA1D9AE97000B8CC25 /* immigrants.c */,
+				070674E11D9AE99B00B8CC25 /* judge.h */,
+				070674E21D9AE9A600B8CC25 /* jugde.c */,
+				070674D91D9AE96C00B8CC25 /* spectators.h */,
+				070674E61D9AE9B600B8CC25 /* spectators.c */,
+			);
+			name = projeto_multithread;
+			sourceTree = "<group>";
+		};
 		071994C31D91B1070030F03A = {
 			isa = PBXGroup;
 			children = (
+				076297431D91B7BE00ADB8C3 /* projeto_multithread */,
 				071994CE1D91B1070030F03A /* mc504 */,
 				071994CD1D91B1070030F03A /* Products */,
 			);
@@ -53,7 +82,7 @@
 		071994CE1D91B1070030F03A /* mc504 */ = {
 			isa = PBXGroup;
 			children = (
-				076297431D91B7BE00ADB8C3 /* projeto_multithread */,
+				070674D81D9AE95000B8CC25 /* projeto_multithread */,
 			);
 			path = mc504;
 			sourceTree = "<group>";
@@ -115,6 +144,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				070674DB1D9AE97000B8CC25 /* immigrants.c in Sources */,
+				070674E71D9AE9B600B8CC25 /* spectators.c in Sources */,
+				070674E31D9AE9A600B8CC25 /* jugde.c in Sources */,
+				070674E51D9AE9B000B8CC25 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,13 +1,7 @@
-//
-//  immigrants.h
-//  mc504
-//
-//  Created by Vitor Uema on 9/20/16.
-//  Copyright © 2016 Vitor Uema. All rights reserved.
-//
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <pthread.h>
+#include <semaphore.h>
 
-#ifndef immigrants_h
-#define immigrants_h
-
-
-#endif /* immigrants_h */
+void* f_img ();
