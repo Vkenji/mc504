@@ -7,6 +7,7 @@
 #include "immigrants.h"
 #include "judge.h"
 #include "spectators.h"
+#include "animation.h"
 
 #define N_IMG 10
 #define N_SPEC 10
@@ -41,10 +42,10 @@ int main() {
     sem_init (&attendant, 0, n_atnd);
     
     for (i = 0; i < N_IMG; i++)
-        pthread_create(&thr_img[i], NULL, f_img, &imgID);
+        pthread_create(&thr_img[i], NULL, f_img, (void*) &imgID);
     
     for (i = 0; i < N_SPEC; i++)
-        pthread_create(&thr_spec[i], NULL, f_spec, &specID);
+        pthread_create(&thr_spec[i], NULL, f_spec, (void*) &specID);
     
     for (i = 0; i < N_JDG; i++)
         pthread_create(&thr_jdg[i], NULL, f_jdg, NULL);

@@ -4,4 +4,4 @@
 #include <pthread.h>
 #include <semaphore.h>
 
-void* f_spec ();
+void* f_spec (void *v);

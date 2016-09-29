@@ -11,6 +11,7 @@
 		070674E31D9AE9A600B8CC25 /* jugde.c in Sources */ = {isa = PBXBuildFile; fileRef = 070674E21D9AE9A600B8CC25 /* jugde.c */; };
 		070674E51D9AE9B000B8CC25 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 070674E41D9AE9B000B8CC25 /* main.c */; };
 		070674E71D9AE9B600B8CC25 /* spectators.c in Sources */ = {isa = PBXBuildFile; fileRef = 070674E61D9AE9B600B8CC25 /* spectators.c */; };
+		B36901821D9B3A7200325B0A /* animation.c in Sources */ = {isa = PBXBuildFile; fileRef = B36901801D9B3A7200325B0A /* animation.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +36,8 @@
 		070674E61D9AE9B600B8CC25 /* spectators.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = spectators.c; path = projeto_multithread/spectators.c; sourceTree = "<group>"; };
 		071994CC1D91B1070030F03A /* mc504 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mc504; sourceTree = BUILT_PRODUCTS_DIR; };
 		076297431D91B7BE00ADB8C3 /* projeto_multithread */ = {isa = PBXFileReference; lastKnownFileType = folder; name = projeto_multithread; path = mc504/projeto_multithread; sourceTree = "<group>"; };
+		B36901801D9B3A7200325B0A /* animation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = animation.c; sourceTree = "<group>"; };
+		B36901811D9B3A7200325B0A /* animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = animation.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 				070674E21D9AE9A600B8CC25 /* jugde.c */,
 				070674D91D9AE96C00B8CC25 /* spectators.h */,
 				070674E61D9AE9B600B8CC25 /* spectators.c */,
+				B36901801D9B3A7200325B0A /* animation.c */,
+				B36901811D9B3A7200325B0A /* animation.h */,
 			);
 			name = projeto_multithread;
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 				070674E71D9AE9B600B8CC25 /* spectators.c in Sources */,
 				070674E31D9AE9A600B8CC25 /* jugde.c in Sources */,
 				070674E51D9AE9B000B8CC25 /* main.c in Sources */,
+				B36901821D9B3A7200325B0A /* animation.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

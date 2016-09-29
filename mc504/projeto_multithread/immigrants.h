@@ -4,4 +4,4 @@
 #include <pthread.h>
 #include <semaphore.h>
 
-void* f_img ();
+void* f_img (void* v);
