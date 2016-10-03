@@ -25,3 +25,5 @@ pthread_cond_t all_checked_in;
 pthread_mutex_t certificate_being_done;
 pthread_cond_t certificate_validated;
 int certificate_done;
+
+pthread_cond_t all_immigrant_leave;
