@@ -15,8 +15,8 @@ void* f_spec (void *v) {
     int id = *(int*) v;
     
     enter_spectators();
-    spectate_spectators();
-    leave_spectators();
+    //spectate_spectators();
+    //leave_spectators();
 
     return NULL;
 }

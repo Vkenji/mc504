@@ -9,7 +9,7 @@
 
 void enter_immigrant ();
 void checkIn_immigrant ();
-void sit_down_immgirant ();
+void sit_down_immigrant ();
 void swear_immigrant ();
 void get_certificate_immmigrant ();
 void leave_immigrant ();
@@ -44,7 +44,7 @@ void checkIn_immigrant () {
     
         // imprimir que imigrante fazendo check in
         checked_in++;
-        sit_down_immgirant();
+        sit_down_immigrant();
     
         if (entered == checked_in && judge_in == 1) {
             swear_immigrant();
