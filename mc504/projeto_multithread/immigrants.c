@@ -28,10 +28,12 @@ void enter_immigrant () {
     pthread_mutex_lock (&door);
     
     // imprimir imigrante entrando
-    while (!judge_in)
-        pthread_cond_wait (&nojudge, &door);
+    while (judge_in)
+        pthread_cond_wait (&judge, &door);
     
     entered++;
+    
+    printf("imigrante entrou \n");
     
     pthread_mutex_unlock (&door);
 }
@@ -82,7 +84,7 @@ void leave_immigrant () {
     
         // imprimir imigrante saindo
         while (judge_in) {
-            pthread_cond_wait (&nojudge, &door);
+            pthread_cond_wait (&judge, &door);
             entered--;
             if (entered == 0)
                 pthread_cond_signal (&all_immigrant_leave);

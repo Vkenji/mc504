@@ -27,11 +27,16 @@ void enter_judge () {
     
     pthread_mutex_lock (&door);
     
-    while (entered > 0 )
-        pthread_cond_wait(&all_immigrant_leave, &door);
+    /* condicao errada, nao eh entered
+     criar outra variavel para verificar se todos os imigrantes que conseguiram o certificado sairam */
+    /* while (entered > 0)
+      pthread_cond_wait(&all_immigrant_leave, &door);
+     */
     
     judge_in = 1;
-    pthread_cond_signal (&nojudge);
+    pthread_cond_signal (&judge);
+    
+    printf("juiz entrou \n");
     
     pthread_mutex_unlock (&door);
     
@@ -57,7 +62,7 @@ void leave_judge () {
     pthread_mutex_lock (&door);
     
     judge_in = 0;
-    pthread_cond_signal (&nojudge);
+    pthread_cond_signal (&judge);
     
     pthread_mutex_unlock (&door);
     

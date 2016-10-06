@@ -18,11 +18,21 @@ int main() {
     hall_full = HALL_FULL;
     n_atnd = N_ATND;
     
-    pthread_mutex_init (&door, NULL);
-    pthread_cond_init (&nojudge, NULL);
+    judge_in = 0;
+    entered = 0;
+    checked_in = 0;
+    certificate_done = 0;
     
-    sem_init (&hall_cap, 0, hall_full);
+    pthread_mutex_init (&door, NULL);
+    pthread_cond_init (&judge, NULL);
+    
     pthread_mutex_init (&attendant, NULL);
+    pthread_cond_init (&all_checked_in, NULL);
+    
+    pthread_mutex_init (&certificate_being_done, NULL);
+    pthread_cond_init (&certificate_validated, NULL);
+    
+    pthread_cond_init (&all_immigrant_leave, NULL);
     
     for (i = 0; i < N_IMG; i++)
         pthread_create(&thr_img[i], NULL, f_img, (void*) &imgID);
@@ -43,9 +53,16 @@ int main() {
     for (i = 0; i < N_JDG; i++)
         pthread_join(thr_jdg[i], NULL);
     
-    sem_destroy (&hall_cap);
-    sem_destroy(&attendant);
     pthread_mutex_destroy(&door);
+    pthread_cond_destroy(&judge);
+    
+    pthread_mutex_destroy(&attendant);
+    pthread_cond_destroy(&all_checked_in);
+    
+    pthread_mutex_destroy(&certificate_being_done);
+    pthread_cond_destroy(&certificate_validated);
+    
+    pthread_cond_destroy(&all_immigrant_leave);
     
     return 0;
 }

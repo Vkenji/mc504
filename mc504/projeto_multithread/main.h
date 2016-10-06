@@ -10,20 +10,29 @@
 sem_t hall_cap;
 
 /* controla entrada e saida de imigrantes */
+/* protege a porta */
 pthread_mutex_t door;
-pthread_cond_t nojudge;
-int judge_in;
+
+/* sinalisa quando o juiz entrou */
+pthread_cond_t judge;
+/* judge_in = 1 juiz entrou, caso contrario nao entrou */
+volatile int judge_in;
 /* numero de imigrantes que fizeram check in */
-int entered;
+volatile int entered;
 
 /* caixas disponiveis para realizacao do CheckIn, protege check_in */
 pthread_mutex_t attendant;
-int checked_in;
+/* controla quantos imigrantes fizeram o checkin */
+volatile int checked_in;
+/* quando todos os imigrantes fizerem o checkin, devemos sinalizar para o juiz */
 pthread_cond_t all_checked_in;
 
-/* processo de valodacao do cerificado */
+/* processo de validacao do cerificado */
+/* imigrantes soh podem pegar o certificado apos a liberacao do juiz */
+/* talvez nao precise dessas variaveis */
 pthread_mutex_t certificate_being_done;
 pthread_cond_t certificate_validated;
-int certificate_done;
+volatile int certificate_done;
 
+/* juiz soh pode entrar se todos os imigrantes que pegaram o certificado sairam */
 pthread_cond_t all_immigrant_leave;

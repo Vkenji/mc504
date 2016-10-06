@@ -26,7 +26,7 @@ void enter_spectators () {
     
     // imprimir epectador entrando
     while (!judge_in)
-        pthread_cond_wait (&nojudge,&door);
+        pthread_cond_wait (&judge,&door);
     
     pthread_mutex_unlock (&door);
 }
