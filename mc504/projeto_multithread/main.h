@@ -1,38 +1,49 @@
-#define N_IMG 10
-#define N_SPEC 10
+#include <stdio.h>
+#include <stdlib.h>
+
+#include <pthread.h>
+#include <semaphore.h>
+#include <unistd.h>
+
+#include <linux/futex.h>
+#include <sys/time.h>
+#include <sys/syscall.h>
+#include <sys/types.h>
+
+// Quantidade de cada thread
+#define N_IMG 3
+#define N_SPEC 5
 #define N_JDG 1
-#define N_ATND 10
-#define HALL_FULL 10
 
-/* capacidade maxima do hall de entrada */
-/* acho que podemos usar o proprio semaforo para controlar
- o numero de immigrantes que entraram */
-sem_t hall_cap;
+int futex_wait(void *addr, int val1){
+    return syscall(SYS_futex, addr, FUTEX_WAIT, val1, NULL, NULL, 0);
+}
 
-/* controla entrada e saida de imigrantes */
-/* protege a porta */
+int futex_wake(void *addr, int n){
+    return syscall(SYS_futex, addr, FUTEX_WAKE, n, NULL, NULL, 0);
+}
+
+// Mutex de entrada de imigrantes e espectadores
 pthread_mutex_t door;
 
-/* sinalisa quando o juiz entrou */
-pthread_cond_t judge;
-/* judge_in = 1 juiz entrou, caso contrario nao entrou */
-volatile int judge_in;
-/* numero de imigrantes que fizeram check in */
-volatile int entered;
+/* controla quantos immigrantes entraram e fizeram checkin */
+volatile int entered_immi, checkin;
+volatile int entered_spec;
 
-/* caixas disponiveis para realizacao do CheckIn, protege check_in */
-pthread_mutex_t attendant;
-/* controla quantos imigrantes fizeram o checkin */
-volatile int checked_in;
-/* quando todos os imigrantes fizerem o checkin, devemos sinalizar para o juiz */
-pthread_cond_t all_checked_in;
+// Barreira para que o judge possa dar confirm
+//sem_t all_checked_in;
+pthread_cond_t all_check_in;
+pthread_mutex_t attentand;
 
-/* processo de validacao do cerificado */
-/* imigrantes soh podem pegar o certificado apos a liberacao do juiz */
-/* talvez nao precise dessas variaveis */
-pthread_mutex_t certificate_being_done;
-pthread_cond_t certificate_validated;
-volatile int certificate_done;
+/* Juíz está dentro?
+	1: está dentro
+	0: não está dentro */
+int judge_inside;
 
-/* juiz soh pode entrar se todos os imigrantes que pegaram o certificado sairam */
-pthread_cond_t all_immigrant_leave;
+/* Juíz confirmou?
+	1: confirmou
+	0: não confirmou */
+int judge_confirmed;
+
+/* avisa quando o juiz pode sair */
+pthread_cond_t judge_can_leave;

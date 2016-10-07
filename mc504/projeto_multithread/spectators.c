@@ -1,32 +1,35 @@
-#include <pthread.h>
-#include <semaphore.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
 #include "spectators.h"
 #include "main.h"
 
-void enter_spectators ();
-void spectate_spectators ();
-void leave_spectators ();
+void* f_spec(void *v);
+void enter_spectator(int id);
+void spectate(int id);
+void leave_spectator(int id);
 
-void* f_spec (void *v) {
+
+void* f_spec(void *v){
     int id = *(int*) v;
     
-    enter_spectators();
-    //spectate_spectators();
-    //leave_spectators();
-
+    enter_spectator(id);
+    spectate(id);
+    leave_spectator(id);
+    
     return NULL;
 }
 
-void enter_spectators () {
-    pthread_mutex_lock (&door);
-    
-    // imprimir epectador entrando
-    while (!judge_in)
-        pthread_cond_wait (&judge,&door);
-    
-    pthread_mutex_unlock (&door);
+void enter_spectator(int id){
+    sleep(1);
+    futex_wait(&judge_inside, 1);
+    atomic_inc (&entered_spec);
+    //printf("Spectator %d has entered.\n", id);
 }
+
+void spectate(int id){
+    sleep(1);
+    //printf("Spectator %d is spectating...\n", id);
+}
+
+void leave_spectator(int id){
+    //printf("Spectator %d has left.\n", id);
+}
+

@@ -1,95 +1,68 @@
-#include <pthread.h>
-#include <semaphore.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
 #include "immigrants.h"
 #include "main.h"
 
-void enter_immigrant ();
-void checkIn_immigrant ();
-void sit_down_immigrant ();
-void swear_immigrant ();
-void get_certificate_immmigrant ();
-void leave_immigrant ();
+void* f_img(void *v);
+void enter_immigrant(int id);
+void checkIn(int id);
+void sitDown(int id);
+void swear(int id);
+void getCertificate(int id);
+void leave_immigrant(int id);
 
-void* f_img (void *v) {
+void* f_img(void *v){
     int id = *(int*) v;
     
-    enter_immigrant ();
-    checkIn_immigrant ();
-    get_certificate_immmigrant ();
+    enter_immigrant(id);
+    checkIn(id);
+    swear(id);
+    sitDown(id);
+    getCertificate(id);
+    leave_immigrant(id);
+    
     return NULL;
 }
 
-/* imigrantes podem entrar se nao existe juiz trabalhando */
-void enter_immigrant () {
-    pthread_mutex_lock (&door);
-    
-    // imprimir imigrante entrando
-    while (judge_in)
-        pthread_cond_wait (&judge, &door);
-    
-    entered++;
-    
-    printf("imigrante entrou \n");
-    
-    pthread_mutex_unlock (&door);
+void enter_immigrant(int id){
+    sleep(1);
+    futex_wait(&judge_inside, 1);
+    atomic_inc (&entered_immi);
+    printf("Immigrant %d has entered.\n", id);
 }
 
-/* imigrantes que entraram devem fazer checkin.
- Quando todos os imigrantes fizeram checkin, sinalizar ao juiz */
-void checkIn_immigrant () {
+void checkIn(int id){
+    sleep(1);
     
-    pthread_mutex_lock (&attendant);
+    atomic_inc (&checkin);
     
-        // imprimir que imigrante fazendo check in
-        checked_in++;
-        sit_down_immigrant();
+    /* avisa para o juiz quando todos os imigrantes fizeram o checkin */
+    if (entered_immi == checkin)
+        pthread_cond_signal (&all_check_in);
+    /* Barrier: quando o ultimo imigrante der check in,
+     ele manda sinal para o judge poder dar confirm */
     
-        if (entered == checked_in && judge_in == 1) {
-            swear_immigrant();
-            pthread_cond_signal (&all_checked_in);
-        }
-    
-    pthread_mutex_unlock (&attendant);
-    
+    printf("Immigrant %d has checked in.\n", id);
 }
 
-void sit_down_immigrant () {
-    // imprimir imigrante sentado
-}
-void swear_immigrant () {
-    // imprimir imigrante levandando
+void swear(int id){
+    printf("Immigrant %d has sworn.\n", id);
 }
 
-/* apos o validacao do cerficado, os imigrantes podem pegar o certificado e sair */
-void get_certificate_immmigrant () {
-    pthread_mutex_lock (&certificate_being_done);
-    
-        while (!certificate_done)
-            pthread_cond_wait(&certificate_validated, &certificate_being_done);
-    
-        leave_immigrant();
-    
-    pthread_mutex_unlock (&certificate_being_done);
+void sitDown(int id){
+    printf("Immigrant %d has sat down.\n", id);
 }
 
-/* quando o juiz sair, os imigrantes podem sair. 
- Quando o ultimo imigrante sair, ele deve avisar que um novo juiz podem entrar.
- SOLUCAO DO PROBLEMA ESTENDIDO */
-void leave_immigrant () {
-    pthread_mutex_lock (&door);
+void getCertificate(int id){
+    futex_wait(&judge_confirmed, 0);
     
-        // imprimir imigrante saindo
-        while (judge_in) {
-            pthread_cond_wait (&judge, &door);
-            entered--;
-            if (entered == 0)
-                pthread_cond_signal (&all_immigrant_leave);
-        }
-    
-    pthread_mutex_unlock (&door);
-    
+    /* juiz nao pode sair antes de todos os imigrantes terem pego o cerificado */
+    atomic_dec (&checkin);
+    if (checkin == 0)
+        pthread_cond_signal (&judge_can_leave);
+    printf("Immigrant %d has gotten the certificate.\n", id);
 }
+
+void leave_immigrant(int id){
+    futex_wait(&judge_inside, 1);
+    printf("Immigrant %d has left.\n", id);
+}
+
